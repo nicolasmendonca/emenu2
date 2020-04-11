@@ -1,0 +1,20 @@
+{
+  "name": "starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Nicolas Mendonca <ae_nmendonca@idcontractors.net>",
+  "license": "MIT",
+  "scripts": {
+    "generate": "graphql-codegen"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.13.2",
+    "@graphql-codegen/typescript": "^1.13.2",
+    "@graphql-codegen/typescript-operations": "^1.13.2"
+  },
+  "dependencies": {
+    "@graphql-codegen/typescript-react-apollo": "^1.13.2",
+    "@graphql-codegen/typescript-resolvers": "^1.13.2",
+    "graphql": "^15.0.0"
+  }
+}

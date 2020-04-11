@@ -1,0 +1,14 @@
+type Restaurant {
+  id: String!
+  name: String!
+  image: String
+}
+
+type Query {
+  restaurant(id: Int!): Restaurant!
+  restaurants: [Restaurant!]!
+}
+
+type Mutation {
+  createRestaurant(name: String!, image: String): Restaurant
+}
