@@ -4,9 +4,12 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon",
-    "generate:resolvers": "gg"
+    "migrate": "prisma deploy",
+    "generate": "prisma generate"
   },
   "dependencies": {
+    "@prisma/cli": "^2.0.0-beta.2",
+    "@prisma/client": "^2.0.0-beta.2",
     "graphql": "^15.0.0",
     "graphql-yoga": "^1.18.3",
     "merge-graphql-schemas": "^1.7.7",
@@ -17,6 +20,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.3",
+    "ts-node": "^8.8.2",
     "typescript": "^3.8.3"
   }
 }

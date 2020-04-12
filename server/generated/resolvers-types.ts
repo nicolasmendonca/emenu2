@@ -15,29 +15,20 @@ export type Restaurant = {
    __typename?: 'Restaurant';
   id: Scalars['String'];
   name: Scalars['String'];
-  image?: Maybe<Scalars['String']>;
+  image: Scalars['String'];
+  slug: Scalars['String'];
+  address: Scalars['String'];
 };
 
 export type Query = {
    __typename?: 'Query';
-  restaurant: Restaurant;
+  restaurant?: Maybe<Restaurant>;
   restaurants: Array<Restaurant>;
 };
 
 
 export type QueryRestaurantArgs = {
-  id: Scalars['Int'];
-};
-
-export type Mutation = {
-   __typename?: 'Mutation';
-  createRestaurant?: Maybe<Restaurant>;
-};
-
-
-export type MutationCreateRestaurantArgs = {
-  name: Scalars['String'];
-  image?: Maybe<Scalars['String']>;
+  slug: Scalars['String'];
 };
 
 
@@ -117,8 +108,6 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
   Restaurant: ResolverTypeWrapper<Restaurant>,
   Query: ResolverTypeWrapper<{}>,
-  Int: ResolverTypeWrapper<Scalars['Int']>,
-  Mutation: ResolverTypeWrapper<{}>,
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -127,30 +116,25 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'],
   Restaurant: Restaurant,
   Query: {},
-  Int: Scalars['Int'],
-  Mutation: {},
 };
 
 export type RestaurantResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Restaurant'] = ResolversParentTypes['Restaurant']> = {
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  image?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  image?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  slug?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  address?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  restaurant?: Resolver<ResolversTypes['Restaurant'], ParentType, ContextType, RequireFields<QueryRestaurantArgs, 'id'>>,
+  restaurant?: Resolver<Maybe<ResolversTypes['Restaurant']>, ParentType, ContextType, RequireFields<QueryRestaurantArgs, 'slug'>>,
   restaurants?: Resolver<Array<ResolversTypes['Restaurant']>, ParentType, ContextType>,
-};
-
-export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createRestaurant?: Resolver<Maybe<ResolversTypes['Restaurant']>, ParentType, ContextType, RequireFields<MutationCreateRestaurantArgs, 'name'>>,
 };
 
 export type Resolvers<ContextType = Context> = {
   Restaurant?: RestaurantResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
-  Mutation?: MutationResolvers<ContextType>,
 };
 
 
