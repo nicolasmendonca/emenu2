@@ -1,5 +1,7 @@
 type Restaurant {
   id: ID! @id
   name: String!
-  image: String
+  image: String!
+  slug: String! @unique
+  address: String!
 }

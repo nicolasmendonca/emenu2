@@ -107,25 +107,18 @@ export type RestaurantOrderByInput =
   | "name_ASC"
   | "name_DESC"
   | "image_ASC"
-  | "image_DESC";
+  | "image_DESC"
+  | "slug_ASC"
+  | "slug_DESC"
+  | "address_ASC"
+  | "address_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface RestaurantCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  image?: Maybe<String>;
-}
-
-export interface RestaurantUpdateInput {
-  name?: Maybe<String>;
-  image?: Maybe<String>;
-}
-
-export interface RestaurantUpdateManyMutationInput {
-  name?: Maybe<String>;
-  image?: Maybe<String>;
-}
+export type RestaurantWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  slug?: Maybe<String>;
+}>;
 
 export interface RestaurantWhereInput {
   id?: Maybe<ID_Input>;
@@ -170,9 +163,59 @@ export interface RestaurantWhereInput {
   image_not_starts_with?: Maybe<String>;
   image_ends_with?: Maybe<String>;
   image_not_ends_with?: Maybe<String>;
+  slug?: Maybe<String>;
+  slug_not?: Maybe<String>;
+  slug_in?: Maybe<String[] | String>;
+  slug_not_in?: Maybe<String[] | String>;
+  slug_lt?: Maybe<String>;
+  slug_lte?: Maybe<String>;
+  slug_gt?: Maybe<String>;
+  slug_gte?: Maybe<String>;
+  slug_contains?: Maybe<String>;
+  slug_not_contains?: Maybe<String>;
+  slug_starts_with?: Maybe<String>;
+  slug_not_starts_with?: Maybe<String>;
+  slug_ends_with?: Maybe<String>;
+  slug_not_ends_with?: Maybe<String>;
+  address?: Maybe<String>;
+  address_not?: Maybe<String>;
+  address_in?: Maybe<String[] | String>;
+  address_not_in?: Maybe<String[] | String>;
+  address_lt?: Maybe<String>;
+  address_lte?: Maybe<String>;
+  address_gt?: Maybe<String>;
+  address_gte?: Maybe<String>;
+  address_contains?: Maybe<String>;
+  address_not_contains?: Maybe<String>;
+  address_starts_with?: Maybe<String>;
+  address_not_starts_with?: Maybe<String>;
+  address_ends_with?: Maybe<String>;
+  address_not_ends_with?: Maybe<String>;
   AND?: Maybe<RestaurantWhereInput[] | RestaurantWhereInput>;
   OR?: Maybe<RestaurantWhereInput[] | RestaurantWhereInput>;
   NOT?: Maybe<RestaurantWhereInput[] | RestaurantWhereInput>;
+}
+
+export interface RestaurantCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  image: String;
+  slug: String;
+  address: String;
+}
+
+export interface RestaurantUpdateInput {
+  name?: Maybe<String>;
+  image?: Maybe<String>;
+  slug?: Maybe<String>;
+  address?: Maybe<String>;
+}
+
+export interface RestaurantUpdateManyMutationInput {
+  name?: Maybe<String>;
+  image?: Maybe<String>;
+  slug?: Maybe<String>;
+  address?: Maybe<String>;
 }
 
 export interface RestaurantSubscriptionWhereInput {
@@ -192,122 +235,24 @@ export interface RestaurantSubscriptionWhereInput {
   >;
 }
 
-export type RestaurantWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
 export interface NodeNode {
   id: ID_Output;
-}
-
-export interface AggregateRestaurant {
-  count: Int;
-}
-
-export interface AggregateRestaurantPromise
-  extends Promise<AggregateRestaurant>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateRestaurantSubscription
-  extends Promise<AsyncIterator<AggregateRestaurant>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface RestaurantPreviousValues {
-  id: ID_Output;
-  name: String;
-  image?: String;
-}
-
-export interface RestaurantPreviousValuesPromise
-  extends Promise<RestaurantPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  image: () => Promise<String>;
-}
-
-export interface RestaurantPreviousValuesSubscription
-  extends Promise<AsyncIterator<RestaurantPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  image: () => Promise<AsyncIterator<String>>;
-}
-
-export interface RestaurantEdge {
-  node: Restaurant;
-  cursor: String;
-}
-
-export interface RestaurantEdgePromise
-  extends Promise<RestaurantEdge>,
-    Fragmentable {
-  node: <T = RestaurantPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface RestaurantEdgeSubscription
-  extends Promise<AsyncIterator<RestaurantEdge>>,
-    Fragmentable {
-  node: <T = RestaurantSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface RestaurantSubscriptionPayload {
-  mutation: MutationType;
-  node: Restaurant;
-  updatedFields: String[];
-  previousValues: RestaurantPreviousValues;
-}
-
-export interface RestaurantSubscriptionPayloadPromise
-  extends Promise<RestaurantSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = RestaurantPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = RestaurantPreviousValuesPromise>() => T;
-}
-
-export interface RestaurantSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<RestaurantSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = RestaurantSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = RestaurantPreviousValuesSubscription>() => T;
 }
 
 export interface Restaurant {
   id: ID_Output;
   name: String;
-  image?: String;
+  image: String;
+  slug: String;
+  address: String;
 }
 
 export interface RestaurantPromise extends Promise<Restaurant>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   image: () => Promise<String>;
+  slug: () => Promise<String>;
+  address: () => Promise<String>;
 }
 
 export interface RestaurantSubscription
@@ -316,6 +261,8 @@ export interface RestaurantSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   image: () => Promise<AsyncIterator<String>>;
+  slug: () => Promise<AsyncIterator<String>>;
+  address: () => Promise<AsyncIterator<String>>;
 }
 
 export interface RestaurantNullablePromise
@@ -324,6 +271,8 @@ export interface RestaurantNullablePromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   image: () => Promise<String>;
+  slug: () => Promise<String>;
+  address: () => Promise<String>;
 }
 
 export interface RestaurantConnection {
@@ -370,18 +319,120 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
+export interface RestaurantEdge {
+  node: Restaurant;
+  cursor: String;
+}
 
-export type Long = string;
+export interface RestaurantEdgePromise
+  extends Promise<RestaurantEdge>,
+    Fragmentable {
+  node: <T = RestaurantPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface RestaurantEdgeSubscription
+  extends Promise<AsyncIterator<RestaurantEdge>>,
+    Fragmentable {
+  node: <T = RestaurantSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateRestaurant {
+  count: Int;
+}
+
+export interface AggregateRestaurantPromise
+  extends Promise<AggregateRestaurant>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateRestaurantSubscription
+  extends Promise<AsyncIterator<AggregateRestaurant>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface RestaurantSubscriptionPayload {
+  mutation: MutationType;
+  node: Restaurant;
+  updatedFields: String[];
+  previousValues: RestaurantPreviousValues;
+}
+
+export interface RestaurantSubscriptionPayloadPromise
+  extends Promise<RestaurantSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = RestaurantPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = RestaurantPreviousValuesPromise>() => T;
+}
+
+export interface RestaurantSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<RestaurantSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = RestaurantSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = RestaurantPreviousValuesSubscription>() => T;
+}
+
+export interface RestaurantPreviousValues {
+  id: ID_Output;
+  name: String;
+  image: String;
+  slug: String;
+  address: String;
+}
+
+export interface RestaurantPreviousValuesPromise
+  extends Promise<RestaurantPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  image: () => Promise<String>;
+  slug: () => Promise<String>;
+  address: () => Promise<String>;
+}
+
+export interface RestaurantPreviousValuesSubscription
+  extends Promise<AsyncIterator<RestaurantPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
+  slug: () => Promise<AsyncIterator<String>>;
+  address: () => Promise<AsyncIterator<String>>;
+}
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
 export type ID_Input = string | number;
 export type ID_Output = string;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
@@ -392,6 +443,8 @@ export type Int = number;
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
+
+export type Long = string;
 
 /**
  * Model Metadata

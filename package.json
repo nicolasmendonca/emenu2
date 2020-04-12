@@ -10,7 +10,8 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^1.13.2",
     "@graphql-codegen/typescript": "^1.13.2",
-    "@graphql-codegen/typescript-operations": "^1.13.2"
+    "@graphql-codegen/typescript-operations": "^1.13.2",
+    "@types/react-router-dom": "^5.1.4"
   },
   "dependencies": {
     "@graphql-codegen/typescript-react-apollo": "^1.13.2",

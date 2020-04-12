@@ -48,7 +48,9 @@ type Query {
 type Restaurant {
   id: ID!
   name: String!
-  image: String
+  image: String!
+  slug: String!
+  address: String!
 }
 
 type RestaurantConnection {
@@ -60,7 +62,9 @@ type RestaurantConnection {
 input RestaurantCreateInput {
   id: ID
   name: String!
-  image: String
+  image: String!
+  slug: String!
+  address: String!
 }
 
 type RestaurantEdge {
@@ -75,12 +79,18 @@ enum RestaurantOrderByInput {
   name_DESC
   image_ASC
   image_DESC
+  slug_ASC
+  slug_DESC
+  address_ASC
+  address_DESC
 }
 
 type RestaurantPreviousValues {
   id: ID!
   name: String!
-  image: String
+  image: String!
+  slug: String!
+  address: String!
 }
 
 type RestaurantSubscriptionPayload {
@@ -104,11 +114,15 @@ input RestaurantSubscriptionWhereInput {
 input RestaurantUpdateInput {
   name: String
   image: String
+  slug: String
+  address: String
 }
 
 input RestaurantUpdateManyMutationInput {
   name: String
   image: String
+  slug: String
+  address: String
 }
 
 input RestaurantWhereInput {
@@ -154,6 +168,34 @@ input RestaurantWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  address: String
+  address_not: String
+  address_in: [String!]
+  address_not_in: [String!]
+  address_lt: String
+  address_lte: String
+  address_gt: String
+  address_gte: String
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_not_starts_with: String
+  address_ends_with: String
+  address_not_ends_with: String
   AND: [RestaurantWhereInput!]
   OR: [RestaurantWhereInput!]
   NOT: [RestaurantWhereInput!]
@@ -161,6 +203,7 @@ input RestaurantWhereInput {
 
 input RestaurantWhereUniqueInput {
   id: ID
+  slug: String
 }
 
 type Subscription {

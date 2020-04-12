@@ -13,29 +13,20 @@ export type Restaurant = {
    __typename?: 'Restaurant';
   id: Scalars['String'];
   name: Scalars['String'];
-  image?: Maybe<Scalars['String']>;
+  image: Scalars['String'];
+  slug: Scalars['String'];
+  address: Scalars['String'];
 };
 
 export type Query = {
    __typename?: 'Query';
-  restaurant: Restaurant;
+  restaurant?: Maybe<Restaurant>;
   restaurants: Array<Restaurant>;
 };
 
 
 export type QueryRestaurantArgs = {
-  id: Scalars['Int'];
-};
-
-export type Mutation = {
-   __typename?: 'Mutation';
-  createRestaurant?: Maybe<Restaurant>;
-};
-
-
-export type MutationCreateRestaurantArgs = {
-  name: Scalars['String'];
-  image?: Maybe<Scalars['String']>;
+  slug: Scalars['String'];
 };
 
 
